@@ -97,19 +97,23 @@ class _BodyState extends State<Body> {
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Background(
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
-            backgroundImage: AssetImage('assets/image/kitty.png'),
-            backgroundColor: Color.fromRGBO(213, 160, 33, 1),
-            radius: size.height * 0.09,
-          ),
+          if (!isLandscape)
+            CircleAvatar(
+              backgroundImage: AssetImage('assets/image/kitty.png'),
+              backgroundColor: Color.fromRGBO(213, 160, 33, 1),
+              radius: size.height * 0.09,
+            ),
           if (_page == 'welcome') WelcomePage(_changeScreen),
           if (_page == 'login') Login(_changeScreen, _login),
           if (_page == 'sign') Sign(_changeScreen, _sign),
-          if (_page == 'home') HomePage(_username, _changeScreen),
+          if (_page == 'home') HomePage(_username),
         ],
       ),
     );

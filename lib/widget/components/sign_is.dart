@@ -40,7 +40,7 @@ class _SignState extends State<Sign> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.all(10),
                   child: TextFormField(
                     focusNode: FocusNode(),
                     textInputAction: TextInputAction.next,
@@ -66,7 +66,7 @@ class _SignState extends State<Sign> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.all(10),
                   child: TextFormField(
                     focusNode: FocusNode(),
                     textInputAction: TextInputAction.done,

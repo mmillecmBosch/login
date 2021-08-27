@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login/themes/login_default_theme.dart';
 import 'button.dart';
-import 'input_style.dart';
 
 class Login extends StatefulWidget {
   final Function click;
@@ -112,7 +111,7 @@ class _LoginState extends State<Login> {
         ),
         Container(
           width: 200,
-          margin: EdgeInsets.all(20),
+          margin: EdgeInsets.all(10),
           child: TextButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
@@ -120,7 +119,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             child: Text(
-              'LOGIN  ',
+              'LOGIN',
               style: GoogleFonts.quicksand(
                 color: Colors.white,
                 fontSize: 20,

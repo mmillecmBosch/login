@@ -1,28 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
-import 'button.dart';
+class HomePage extends StatefulWidget {
+  final String _username;
+  HomePage(this._username);
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
-  final String username;
-  final Function click;
-  HomePage(this.username, this.click);
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  late final AnimationController animationController;
+  var animationCheck = false;
+
+  void initState() {
+    this.animationController = AnimationController(vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.all(20),
-            child: Text(
-              'Welcome $username!',
-              style: TextStyle(color: Colors.white, fontSize: 30),
+    Size size = MediaQuery.of(context).size;
+
+    return Column(
+      children: [
+        if (!animationCheck)
+          SizedBox(
+            height: 300,
+            width: 300,
+            child: LottieBuilder.asset(
+              'assets/json/scanning-documents.json',
+              repeat: false,
+              controller: this.animationController,
+              onLoaded: (composition) {
+                this.animationController.duration = composition.duration;
+                this.animationController.forward();
+                this.animationController.addStatusListener((status) {
+                  if (status == AnimationStatus.completed) {
+                    setState(() {
+                      animationCheck = true;
+                    });
+                  }
+                });
+              },
             ),
           ),
-          Button('EXIT', click, 'welcome')
-        ],
-      ),
+        if (animationCheck)
+          Message_Welcome(
+            size: size,
+            username: widget._username,
+          )
+      ],
+    );
+  }
+}
+
+class Message_Welcome extends StatelessWidget {
+  const Message_Welcome({
+    Key? key,
+    required this.size,
+    required this.username,
+  }) : super(key: key);
+
+  final Size size;
+  final String username;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: AlignmentDirectional.center,
+      children: [
+        Container(
+          width: size.height * 0.5,
+          child: LottieBuilder.asset('assets/json/sparkle.json'),
+        ),
+        Container(
+          child: Text(
+            'Welcome ' + username,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: size.height * 0.05,
+            ),
+          ),
+        )
+      ],
     );
   }
 }
