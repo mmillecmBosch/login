@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
         if (animationCheck)
-          Message_Welcome(
+          MessageWelcome(
             size: size,
             username: widget._username,
           )
@@ -53,8 +53,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 }
 
-class Message_Welcome extends StatelessWidget {
-  const Message_Welcome({
+class MessageWelcome extends StatelessWidget {
+  const MessageWelcome({
     Key? key,
     required this.size,
     required this.username,
@@ -73,6 +73,7 @@ class Message_Welcome extends StatelessWidget {
           child: LottieBuilder.asset('assets/json/sparkle.json'),
         ),
         Container(
+          alignment: Alignment.center,
           child: Text(
             'Welcome ' + username,
             style: TextStyle(

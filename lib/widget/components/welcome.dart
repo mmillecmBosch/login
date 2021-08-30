@@ -15,10 +15,11 @@ class WelcomePage extends StatelessWidget {
           child: Text(
             'Welcome Devs',
             style: GoogleFonts.quicksand(
-                fontSize: 40,
-                textStyle: TextStyle(
-                  color: Color.fromRGBO(213, 160, 33, 1),
-                )),
+              fontSize: 40,
+              textStyle: TextStyle(
+                color: Color.fromRGBO(213, 160, 33, 1),
+              ),
+            ),
           ),
         ),
         Button('SIGN UP', click, 'sign'),
